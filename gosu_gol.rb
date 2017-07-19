@@ -24,6 +24,7 @@ class GosuGOL
 					end
 				end
 			end
+			puts "please enter n for next generation"
 			v = gets.chomp
 			if v == "n"
 				puts "next generation:"
