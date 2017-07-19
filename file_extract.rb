@@ -19,13 +19,9 @@ module GameGOL
 		end
 	end
 end
-<<<<<<< HEAD
-d = GameGOL::FileExtract.new("test.txt")
-d.fetch
-dimension= d.n
-puts dimension
-array = d.first_matrix
-puts array
-=======
-sbjrb
->>>>>>> 94c646af6468b2bb537a63c714e02efaf531406c
+# d = GameGOL::FileExtract.new("test.txt")
+# d.fetch
+# dimension= d.n
+# puts dimension
+# array = d.first_matrix
+# puts array

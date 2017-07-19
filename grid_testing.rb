@@ -1,6 +1,5 @@
 require 'gosu'
-require 'rubygems'
-require 'pry'
+require_relative 'gosu_gol'
 
 class Golu < Gosu::Window
   def initialize
@@ -32,26 +31,43 @@ class Golu < Gosu::Window
 
   def draw
     gridify
-    if !@next_gen_flag
-      @actual_coord.each do |coordinate|
-        @white.draw(coordinate[0] * @factor,coordinate[1] * @factor, 0)
-      end
+    @actual_coord.each do |coordinate|
+      window_coord = flip_coord(coordinate)
+      @white.draw(window_coord[0] * @factor,window_coord[1] * @factor, 0)
     end
   end
 
+  def flip_coord(coord)
+    [coord[1], coord[0]]
+  end
+
   def update
+    # if @next_gen_flag == true 
+    #   @actual_coord = @game_instance.evolve
+    #   sleep(0.5)
+    # end
   end
 
   def button_down(id)
     case id
+    when Gosu::KB_ESCAPE
+      close
+    when Gosu::KB_RIGHT 
+      if !@next_gen_flag
+        @next_gen_flag = true
+        @game_instance = GosuGOL.new(@actual_coord, @dimension)
+        @actual_coord = @game_instance.evolve
+      else
+        @actual_coord = @game_instance.evolve
+      end
     when Gosu::MsLeft
       coord_map = [mouse_x.to_i / @factor, mouse_y.to_i / @factor]
-      if !@actual_coord.include? coord_map
-        @actual_coord << coord_map
+      if !@actual_coord.include? flip_coord(coord_map)
+        @actual_coord << flip_coord(coord_map)
       else
-        @actual_coord.delete(coord_map)
+        @actual_coord.delete(flip_coord(coord_map))
       end
-      puts @actual_coord.join(", ")
+      # puts @actual_coord.join(", ")
     end
   end
 end
