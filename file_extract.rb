@@ -22,8 +22,17 @@ class FileExtract
 		@first_matrix = a
 	end
 end
+<<<<<<< HEAD
 # object = FileExtract.new("test.txt",@n,@first_matrix)
 # object.fetch
 # 
 
 
+=======
+# d = GameGOL::FileExtract.new("test.txt")
+# d.fetch
+# dimension= d.n
+# puts dimension
+# array = d.first_matrix
+# puts array
+>>>>>>> aea98cff17df5071e3a4b07d11f0c847c8d623ae
